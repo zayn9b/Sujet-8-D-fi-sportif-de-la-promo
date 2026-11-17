@@ -1,31 +1,24 @@
-import './App.css'
+import { BrowserRouter, Routes, Route } from 'react-router'
+import Layout from './components/Layout'
+import HomePage from './pages/HomePage'
+import LeaderboardPage from './pages/LeaderboardPage'
+import NotFoundPage from './pages/NotFoundPage'
 
+// Liste des pages du site : à chaque adresse, son composant
 function App() {
   return (
-    <div className="min-h-screen">
-      <header className="bg-primary text-primary-foreground p-4">
-        <h1 className="text-2xl font-bold uppercase">Défi Sportif</h1>
-      </header>
-
-      <main className="p-8 space-y-6">
-        <h2 className="text-4xl font-bold uppercase">Le podium</h2>
-        <p className="text-muted-foreground">Texte secondaire en gris (police Barlow).</p>
-
-        <div className="flex flex-wrap items-center gap-3">
-          <span className="rounded-lg bg-accent text-accent-foreground px-4 py-2 font-medium">Accent</span>
-          <span className="rounded-lg bg-discord text-discord-foreground px-4 py-2 font-medium">Discord</span>
-          <span className="rounded-lg bg-destructive text-destructive-foreground px-4 py-2 font-medium">Supprimer</span>
-          <span className="h-10 w-10 rounded-full bg-gold" />
-          <span className="h-10 w-10 rounded-full bg-silver" />
-          <span className="h-10 w-10 rounded-full bg-bronze" />
-        </div>
-
-        <div className="bg-card rounded-xl shadow-card p-6">Une carte avec ombre</div>
-        <div className="bg-hero rounded-xl p-6 text-white">Dégradé de la page d'accueil</div>
-      </main>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        {/* Toutes ces pages sont affichées à l'intérieur du Layout */}
+        <Route element={<Layout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/classement" element={<LeaderboardPage />} />
+          {/* "*" = toute adresse qui ne correspond à rien au-dessus */}
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
-
 
 export default App
