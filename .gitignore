@@ -147,3 +147,8 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+
+
+#pour que tes clés privées ne soient jamais publiées sur GitHub
+.env
+credentials.json
